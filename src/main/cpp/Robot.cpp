@@ -50,7 +50,7 @@ class Robot : public frc::TimedRobot {
     //                        m_stick.GetY(frc::GenericHID::JoystickHand::kRightHand) * 0.6);
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * 0.6, m_stick.GetRawAxis(1) * 0.6);
-    if (m_stick.GetRawButton(7)||m_stick.GetRawButton(8)) speedMultiplier = 1;
+    if (m_stick.GetRawButton(5)||m_stick.GetRawButton(6)) speedMultiplier = 1;
     else speedMultiplier = 0.6;
   }
 
