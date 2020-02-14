@@ -41,6 +41,8 @@ class Robot : public frc::TimedRobot {
   void TeleopInit() override {}
 
   void TeleopPeriodic() override {
+   
+    float speedMultiplier;
     // Drive with arcade style (use right stick)
     //m_robotDrive.ArcadeDrive(m_stick.GetY()*0.6, m_stick.GetX()*0.6);
 
@@ -48,6 +50,8 @@ class Robot : public frc::TimedRobot {
     //                        m_stick.GetY(frc::GenericHID::JoystickHand::kRightHand) * 0.6);
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * 0.6, m_stick.GetRawAxis(1) * 0.6);
+    if (m_stick.GetRawButton(7)||m_stick.GetRawButton(8)) speedMultiplier = 1;
+    else speedMultiplier = 0.6;
   }
 
   void TestPeriodic() override {}
