@@ -41,18 +41,8 @@ class Robot : public frc::TimedRobot {
     }
   }
 
-  void driving(){
-    while(true){
-      m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * 0.6, m_stick.GetRawAxis(1) * 0.6);
-    }
-  }
 
-  void boosting(){
-    while(true){
-      if (m_stick.GetRawButton(5)||m_stick.GetRawButton(6)) speedMultiplier = 1;
-      else speedMultiplier = 0.6;
-    }
-  }
+  m_stick.GetRawButton(5)
 
   void TeleopInit() override {}
 
@@ -63,8 +53,7 @@ class Robot : public frc::TimedRobot {
 
     // m_robotDrive.TankDrive(m_stick.GetY(frc::GenericHID::JoystickHand::kLeftHand) * 0.6,
     //                        m_stick.GetY(frc::GenericHID::JoystickHand::kRightHand) * 0.6);
-    thread t1(driving());
-    thread t2(boosting());
+    m_robotDrive.TankDrive(m_stick.GetRawAxis(5) - (0.4*(0*m_stick.GetRawButton(5))), m_stick.GetRawAxis(1) - (0.4*(0*m_stick.GetRawButton(5)));
   }
 
   void TestPeriodic() override {}
