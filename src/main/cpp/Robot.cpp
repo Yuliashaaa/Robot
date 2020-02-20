@@ -53,7 +53,7 @@ class Robot : public frc::TimedRobot {
 
     // m_robotDrive.TankDrive(m_stick.GetY(frc::GenericHID::JoystickHand::kLeftHand) * 0.6,
     //                        m_stick.GetY(frc::GenericHID::JoystickHand::kRightHand) * 0.6);
-    m_robotDrive.TankDrive(m_stick.GetRawAxis(5) - (0.4*(0*m_stick.GetRawButton(5))), m_stick.GetRawAxis(1) - (0.4*(0*m_stick.GetRawButton(5)));
+    m_robotDrive.TankDrive(m_stick.GetRawAxis(5) - (0.4*(m_stick.GetRawButton(5))), m_stick.GetRawAxis(1) - (0.4*(m_stick.GetRawButton(5)));
   }
 
   void TestPeriodic() override {}
