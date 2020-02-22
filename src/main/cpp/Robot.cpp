@@ -11,12 +11,9 @@
 #include <frc/Timer.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/livewindow/LiveWindow.h>
-#include <thread>
 
 #include <frc/GenericHID.h>
  
-
-float speedMultiplier;
 
 class Robot : public frc::TimedRobot {
  public:
@@ -41,19 +38,18 @@ class Robot : public frc::TimedRobot {
     }
   }
 
-
-  m_stick.GetRawButton(5)
-
   void TeleopInit() override {}
 
   void TeleopPeriodic() override {
-   
     // Drive with arcade style (use right stick)
     //m_robotDrive.ArcadeDrive(m_stick.GetY()*0.6, m_stick.GetX()*0.6);
 
     // m_robotDrive.TankDrive(m_stick.GetY(frc::GenericHID::JoystickHand::kLeftHand) * 0.6,
     //                        m_stick.GetY(frc::GenericHID::JoystickHand::kRightHand) * 0.6);
-    m_robotDrive.TankDrive(m_stick.GetRawAxis(5) - (0.4*(m_stick.GetRawButton(5))), m_stick.GetRawAxis(1) - (0.4*(m_stick.GetRawButton(5)));
+
+    double coef = m_stick.GetRawButton(5) ? 1 : 0.6;
+
+    m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * coef, m_stick.GetRawAxis(1) * coef);
   }
 
   void TestPeriodic() override {}
