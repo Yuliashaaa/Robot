@@ -11,6 +11,7 @@
 #include <frc/Timer.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/livewindow/LiveWindow.h>
+#include <frc/DigitalOutput.h>
 
 #include <frc/GenericHID.h>
  
@@ -40,14 +41,38 @@ class Robot : public frc::TimedRobot {
 
   void TeleopInit() override {}
 
+ private:
+  DigitalOutput Pin1Up(0);    // Пин 1 на подъём
+  DigitalOutput Pin2Up(1);    // Пин 2 на подъём
+  DigitalOutput Pin1Down(2);  // Пин 1 на спуск
+  DigitalOutput Pin2Down(3);  // Пин 2 на спуск
+ 
+ public:
+   
   void TeleopPeriodic() override {
-    // Drive with arcade style (use right stick)
-    //m_robotDrive.ArcadeDrive(m_stick.GetY()*0.6, m_stick.GetX()*0.6);
-
-    // m_robotDrive.TankDrive(m_stick.GetY(frc::GenericHID::JoystickHand::kLeftHand) * 0.6,
-    //                        m_stick.GetY(frc::GenericHID::JoystickHand::kRightHand) * 0.6);
+   /*
+    *  MAIN FUNCTION
+    */
 
     double coef = m_stick.GetRawButton(5) ? 1 : 0.6;
+   
+    if(m_stick.GetRawButton(4)){     //  Подъём мячей
+     Pin1Up.Set(true); 
+     Pin2Up.Set(true);
+    } 
+    else{
+     Pin1Up.Set(false); 
+     Pin2Up.Set(false);
+    }
+   
+   if(m_stick.GetRawButton(2)){     //  Спуск мячей
+     Pin1Down.Set(true); 
+     Pin2Down.Set(true);
+    } 
+    else{
+     Pin1Down.Set(false); 
+     Pin2Down.Set(false);
+    }
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * coef, m_stick.GetRawAxis(1) * coef);
   }
