@@ -41,7 +41,7 @@ class Robot : public frc::TimedRobot {
 
   void TeleopInit() override {}
 
- void TeleopPeriodic() override {
+  void TeleopPeriodic() override {
    /*
     *  MAIN FUNCTION
     */
