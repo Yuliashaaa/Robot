@@ -44,28 +44,50 @@ class Robot : public frc::TimedRobot {
    /*
     *  MAIN FUNCTION
     */
-    frc::DigitalOutput Pin1Up(0);    // Пин 1 на подъём
-    frc::DigitalOutput Pin2Up(1);    // Пин 2 на подъём
-    frc::DigitalOutput Pin1Down(2);  // Пин 1 на спуск
-    frc::DigitalOutput Pin2Down(3);  // Пин 2 на спуск
+    frc::DigitalOutput Pin0(0);    // Пин 0 L298N ворота подъём
+    frc::DigitalOutput Pin1(1);    // Пин 1 L298N ворота спуск
+    frc::DigitalOutput Pin2(2);    // Пин 2 L298N цветовое колесо влево
+    frc::DigitalOutput Pin3(3);    // Пин 3 L298N цветовое колесо вправо
+    frc::DigitalOutput Pin4(4);    // Пин 4 подъём шаров
+    frc::DigitalOutput Pin5(5);    // Пин 5 спуск шаров
+    
     double coef = m_stick.GetRawButton(5) ? 1 : 0.6;
    
-    if(m_stick.GetRawButton(4)){     //  Подъём мячей
-     Pin1Up.frc::DigitalOutput::Set(true); 
-     Pin2Up.frc::DigitalOutput::Set(true);
+    if(m_stick.GetRawButton(1)){
+     Pin0.frc::DigitalOutput::Set(true); 
     } 
     else{
-     Pin1Up.frc::DigitalOutput::Set(false); 
-     Pin2Up.frc::DigitalOutput::Set(false);
+     Pin0.frc::DigitalOutput::Set(false);
     }
-   
-   if(m_stick.GetRawButton(2)){     //  Спуск мячей
-     Pin1Down.Set(true); 
-     Pin2Down.Set(true);
+    if(m_stick.GetRawButton(2)){
+     Pin1.frc::DigitalOutput::Set(true); 
     } 
     else{
-     Pin1Down.Set(false); 
-     Pin2Down.Set(false);
+     Pin1.frc::DigitalOutput::Set(false);
+    }
+    if(m_stick.GetRawButton(3)){
+     Pin2.frc::DigitalOutput::Set(true); 
+    } 
+    else{
+     Pin2.frc::DigitalOutput::Set(false);
+    }
+    if(m_stick.GetRawButton(4)){
+     Pin3.frc::DigitalOutput::Set(true); 
+    } 
+    else{
+     Pin3.frc::DigitalOutput::Set(false);
+    }
+    if(m_stick.GetRawButton(5)){
+     Pin4.frc::DigitalOutput::Set(true); 
+    } 
+    else{
+     Pin4.frc::DigitalOutput::Set(false);
+    }
+    if(m_stick.GetRawButton(6)){
+     Pin5.frc::DigitalOutput::Set(true); 
+    } 
+    else{
+     Pin5.frc::DigitalOutput::Set(false);
     }
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * coef, m_stick.GetRawAxis(1) * coef);
