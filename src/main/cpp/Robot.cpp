@@ -11,6 +11,7 @@
 #include <frc/Timer.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/livewindow/LiveWindow.h>
+#include <frc/DigitalOutput.h>
 
 #include <frc/GenericHID.h>
  
@@ -70,6 +71,7 @@ class Robot : public frc::TimedRobot {
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * coef, m_stick.GetRawAxis(1) * coef);
   }
+
 
   void TestPeriodic() override {}
 
