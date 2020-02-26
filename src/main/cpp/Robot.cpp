@@ -41,28 +41,23 @@ class Robot : public frc::TimedRobot {
 
   void TeleopInit() override {}
 
- private:
-  DigitalOutput Pin1Up(0);    // Пин 1 на подъём
-  DigitalOutput Pin2Up(1);    // Пин 2 на подъём
-  DigitalOutput Pin1Down(2);  // Пин 1 на спуск
-  DigitalOutput Pin2Down(3);  // Пин 2 на спуск
- 
- public:
-   
-  void TeleopPeriodic() override {
+ void TeleopPeriodic() override {
    /*
     *  MAIN FUNCTION
     */
-
+    frc::DigitalOutput Pin1Up(0);    // Пин 1 на подъём
+    frc::DigitalOutput Pin2Up(1);    // Пин 2 на подъём
+    frc::DigitalOutput Pin1Down(2);  // Пин 1 на спуск
+    frc::DigitalOutput Pin2Down(3);  // Пин 2 на спуск
     double coef = m_stick.GetRawButton(5) ? 1 : 0.6;
    
     if(m_stick.GetRawButton(4)){     //  Подъём мячей
-     Pin1Up.Set(true); 
-     Pin2Up.Set(true);
+     Pin1Up.frc::DigitalOutput::Set(true); 
+     Pin2Up.frc::DigitalOutput::Set(true);
     } 
     else{
-     Pin1Up.Set(false); 
-     Pin2Up.Set(false);
+     Pin1Up.frc::DigitalOutput::Set(false); 
+     Pin2Up.frc::DigitalOutput::Set(false);
     }
    
    if(m_stick.GetRawButton(2)){     //  Спуск мячей
@@ -76,6 +71,7 @@ class Robot : public frc::TimedRobot {
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * coef, m_stick.GetRawAxis(1) * coef);
   }
+
 
   void TestPeriodic() override {}
 
