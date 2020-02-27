@@ -37,6 +37,19 @@ class Robot : public frc::TimedRobot {
       m_robotDrive.ArcadeDrive(0.0, 0.0);
     }
   }
+ 
+  private:
+ 
+  void BindPinToButton(frc::DigitalOutput& Pin, int button, int NObutton){
+   if(m_stick.GetRawButton(button) && !m_stick.GetRawButton(NObutton)){
+     Pin.frc::DigitalOutput::Set(true); 
+    } 
+    else{
+     Pin.frc::DigitalOutput::Set(false);
+    }
+  }
+ 
+  public:
 
   void TeleopInit() override {}
 
@@ -53,42 +66,17 @@ class Robot : public frc::TimedRobot {
     
     double coef = m_stick.GetRawButton(5) ? 1 : 0.6;
    
-    if(m_stick.GetRawButton(1) && !m_stick.GetRawButton(2)){
-     Pin0.frc::DigitalOutput::Set(true); 
-    } 
-    else{
-     Pin0.frc::DigitalOutput::Set(false);
-    }
-    if(m_stick.GetRawButton(2) && !m_stick.GetRawButton(1)){
-     Pin1.frc::DigitalOutput::Set(true); 
-    } 
-    else{
-     Pin1.frc::DigitalOutput::Set(false);
-    }
-    if(m_stick.GetRawButton(3) && !m_stick.GetRawButton(4)){
-     Pin2.frc::DigitalOutput::Set(true); 
-    } 
-    else{
-     Pin2.frc::DigitalOutput::Set(false);
-    }
-    if(m_stick.GetRawButton(4) && !m_stick.GetRawButton(3)){
-     Pin3.frc::DigitalOutput::Set(true); 
-    } 
-    else{
-     Pin3.frc::DigitalOutput::Set(false);
-    }
-    if(m_stick.GetRawButton(5) && !m_stick.GetRawButton(6)){
-     Pin4.frc::DigitalOutput::Set(true); 
-    } 
-    else{
-     Pin4.frc::DigitalOutput::Set(false);
-    }
-    if(m_stick.GetRawButton(6) && !m_stick.GetRawButton(5)){
-     Pin5.frc::DigitalOutput::Set(true); 
-    } 
-    else{
-     Pin5.frc::DigitalOutput::Set(false);
-    }
+    /*
+     *   Первый аргумент -- пин, второй -- кнопка для пина, третий -- кнопка-предохранитель. По умолчанию не ставил, 
+     *   Чтобы не было как с преобразователем
+     */
+   
+    BindPinToButton(Pin0, 1, 2);
+    BindPinToButton(Pin1, 2, 1);
+    BindPinToButton(Pin2, 3, 4);
+    BindPinToButton(Pin3, 4, 3);
+    BindPinToButton(Pin4, 5, 6);
+    BindPinToButton(Pin5, 6, 5);
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * coef, m_stick.GetRawAxis(1) * coef);
   }
