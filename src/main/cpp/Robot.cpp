@@ -53,37 +53,37 @@ class Robot : public frc::TimedRobot {
     
     double coef = m_stick.GetRawButton(5) ? 1 : 0.6;
    
-    if(m_stick.GetRawButton(1)){
+    if(m_stick.GetRawButton(1) && !m_stick.GetRawButton(2)){
      Pin0.frc::DigitalOutput::Set(true); 
     } 
     else{
      Pin0.frc::DigitalOutput::Set(false);
     }
-    if(m_stick.GetRawButton(2)){
+    if(m_stick.GetRawButton(2) && !m_stick.GetRawButton(1)){
      Pin1.frc::DigitalOutput::Set(true); 
     } 
     else{
      Pin1.frc::DigitalOutput::Set(false);
     }
-    if(m_stick.GetRawButton(3)){
+    if(m_stick.GetRawButton(3) && !m_stick.GetRawButton(4)){
      Pin2.frc::DigitalOutput::Set(true); 
     } 
     else{
      Pin2.frc::DigitalOutput::Set(false);
     }
-    if(m_stick.GetRawButton(4)){
+    if(m_stick.GetRawButton(4) && !m_stick.GetRawButton(3)){
      Pin3.frc::DigitalOutput::Set(true); 
     } 
     else{
      Pin3.frc::DigitalOutput::Set(false);
     }
-    if(m_stick.GetRawButton(5)){
+    if(m_stick.GetRawButton(5) && !m_stick.GetRawButton(6)){
      Pin4.frc::DigitalOutput::Set(true); 
     } 
     else{
      Pin4.frc::DigitalOutput::Set(false);
     }
-    if(m_stick.GetRawButton(6)){
+    if(m_stick.GetRawButton(6) && !m_stick.GetRawButton(5)){
      Pin5.frc::DigitalOutput::Set(true); 
     } 
     else{
