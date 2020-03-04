@@ -71,12 +71,12 @@ class Robot : public frc::TimedRobot {
      *   Чтобы не было как с преобразователем
      */
    
-    BindPinToButton(Pin0, 1, 2);
-    BindPinToButton(Pin1, 2, 1);
-    BindPinToButton(Pin2, 3, 4);
-    BindPinToButton(Pin3, 4, 3);
-    BindPinToButton(Pin4, 5, 6);
-    BindPinToButton(Pin5, 6, 5);
+    BindPinToButton(Pin0, 11, 12);
+    BindPinToButton(Pin1, 12, 11);
+    BindPinToButton(Pin2, 13, 14);
+    BindPinToButton(Pin3, 14, 13);
+    BindPinToButton(Pin4, 15, 16);
+    BindPinToButton(Pin5, 16, 15);
 
     m_robotDrive.TankDrive(m_stick.GetRawAxis(5) * coef, m_stick.GetRawAxis(1) * coef);
   }
